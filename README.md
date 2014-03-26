@@ -9,7 +9,7 @@ Use [composer](http://getcomposer.org)
 ## Usage
 
 ```php
-// Use it?
+$feed = new \imnotjames\Syndicator\Feed('');
 ```
 
 ## License
