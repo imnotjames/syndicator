@@ -1,0 +1,19 @@
+{
+    "name":             "imnotjames/syndicator",
+    "description":      "Parse and serialize syndicated feeds.",
+    "keywords":         ["rss", "atom", "podcast", "xml", "feeds"],
+    "homepage":         "https://github.com/imnotjames/syndicator",
+    "license":          "MIT",
+    "authors": [
+        {
+            "name":         "James Ward",
+            "email":        "james@notjam.es",
+            "homepage":     "http://notjam.es"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "imnotjames\\Syndicator\\": "src/imnotjames/Syndicator"
+        }
+    }
+}
