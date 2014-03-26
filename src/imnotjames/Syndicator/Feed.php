@@ -106,7 +106,7 @@ class Feed implements IteratorAggregate {
 	}
 
 	public function getLogoURI() {
-
+		return $this->logoURI;
 	}
 
 	/**
