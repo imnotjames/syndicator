@@ -71,7 +71,7 @@ class RSSXML implements Serializer {
 
 		// Required
 		$channelXML->addChild('title', $title);
-		$channelXML->addChild('link', $feed->getLink());
+		$channelXML->addChild('link', $feed->getURI());
 		$channelXML->addChild('description', $feed->getDescription());
 
 		$channelXML->addChild('generator', $this->generator);

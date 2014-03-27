@@ -28,7 +28,7 @@ class Feed implements IteratorAggregate {
 	/**
 	 * @var string
 	 */
-	private $link;
+	private $uri;
 
 	/**
 	 * @var string
@@ -55,9 +55,9 @@ class Feed implements IteratorAggregate {
 	 */
 	private $categories = array();
 
-	public function __construct($title, $link, $description) {
+	public function __construct($title, $uri, $description) {
 		$this->title = $title;
-		$this->link = $link;
+		$this->uri = $uri;
 		$this->description = $description;
 	}
 
@@ -85,8 +85,8 @@ class Feed implements IteratorAggregate {
 	/**
 	 * @return string
 	 */
-	public function getLink() {
-		return $this->link;
+	public function getURI() {
+		return $this->uri;
 	}
 
 	public function getDatePublished() {
