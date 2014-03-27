@@ -118,7 +118,8 @@ class RSSXML implements Serializer {
 			if (!empty($guid)) {
 				$itemXML->addChild('guid', $guid);
 			} else {
-				$itemXML->addChild('guid', hash('sha256', $article->getTitle() . $article->getURI() . $article->getDescription()));
+				$permalinkXML = $itemXML->addChild('guid', hash('sha256', $article->getTitle() . $article->getURI() . $article->getDescription()));
+				$permalinkXML->addAttribute('isPermaLink', 'false');
 			}
 
 			$publishedDate = $article->getDatePublished();
