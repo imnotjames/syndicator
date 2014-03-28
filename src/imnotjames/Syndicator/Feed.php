@@ -55,6 +55,11 @@ class Feed implements IteratorAggregate {
 	 */
 	private $categories = array();
 
+	/**
+	 * @param string $title
+	 * @param string $uri
+	 * @param string $description
+	 */
 	public function __construct($title, $uri, $description) {
 		$this->title = $title;
 		$this->uri = $uri;
@@ -89,22 +94,37 @@ class Feed implements IteratorAggregate {
 		return $this->uri;
 	}
 
+	/**
+	 * @return \DateTime|null
+	 */
 	public function getDatePublished() {
 		return $this->datePublished;
 	}
 
+	/**
+	 * @return \DateTime|null
+	 */
 	public function getDateUpdated() {
 		return $this->dateUpdated;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getCategories() {
 		return $this->categories;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getArticles() {
 		return $this->articles;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getLogoURI() {
 		return $this->logoURI;
 	}
