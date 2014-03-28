@@ -131,17 +131,17 @@ class RSSXML implements Serializer {
 				$itemXML->addChild('category', $category);
 			}
 
+			$publishedDate = $article->getDatePublished();
+			if (!is_null($publishedDate)) {
+				$itemXML->addChild('pubDate', $publishedDate->format(self::DATE_FORMAT));
+			}
+
 			$guid = $article->getID();
 			if (!empty($guid)) {
 				$itemXML->addChild('guid', $guid);
 			} else {
 				$permalinkXML = $itemXML->addChild('guid', hash('sha256', $article->getTitle() . $article->getURI() . $article->getDescription()));
 				$permalinkXML->addAttribute('isPermaLink', 'false');
-			}
-
-			$publishedDate = $article->getDatePublished();
-			if (!empty($publishedDate)) {
-				$itemXML->addChild('pubDate', $publishedDate->format(self::DATE_FORMAT));
 			}
 
 			$itemEnclosure = $article->getEnclosure();
