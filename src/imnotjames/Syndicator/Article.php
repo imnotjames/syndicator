@@ -184,10 +184,10 @@ class Article {
 	}
 
 	/**
-	 * @param DateTime $publishedDate
+	 * @param DateTime $datePublished
 	 */
-	public function setPublishedDate(DateTime $publishedDate) {
-		$this->publishedDate = $publishedDate;
+	public function setDatePublished(DateTime $datePublished) {
+		$this->datePublished = $datePublished;
 	}
 
 	/**
