@@ -2,6 +2,7 @@
 namespace imnotjames\Syndicator;
 
 use DateTime;
+use imnotjames\Syndicator\Exceptions\InvalidURIException;
 
 class Article {
 	/**
@@ -58,8 +59,15 @@ class Article {
 	 * @param string $title
 	 * @param string $description
 	 * @param string $uri
+	 *
+	 * @throws Exceptions\InvalidURIException
 	 */
 	public function __construct($title, $description, $uri) {
+		$uri = filter_Var($uri, FILTER_VALIDATE_URL);
+		if ($uri === false) {
+			throw new InvalidURIException();
+		}
+
 		$this->title = $title;
 		$this->description = $description;
 		$this->uri = $uri;
@@ -158,8 +166,15 @@ class Article {
 
 	/**
 	 * @param string $uri
+	 *
+	 * @throws Exceptions\InvalidURIException
 	 */
 	public function setURI($uri) {
+		$uri = filter_Var($uri, FILTER_VALIDATE_URL);
+		if ($uri === false) {
+			throw new InvalidURIException();
+		}
+
 		$this->uri = $uri;
 	}
 
