@@ -55,6 +55,8 @@ class RSSXML implements Serializer {
 	/**
 	 * @param Feed $feed
 	 *
+	 * @throws \imnotjames\Syndicator\Exceptions\SerializationException
+	 *
 	 * @return mixed|string
 	 */
 	public function serialize(Feed $feed) {
