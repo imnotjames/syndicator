@@ -1,6 +1,7 @@
 <?php
 namespace imnotjames\Syndicator;
 
+use imnotjames\Syndicator\Exceptions\InvalidURIException;
 use IteratorAggregate;
 use ArrayIterator;
 
@@ -59,8 +60,16 @@ class Feed implements IteratorAggregate {
 	 * @param string $title
 	 * @param string $uri
 	 * @param string $description
+	 *
+	 * @throws Exceptions\InvalidURIException
 	 */
 	public function __construct($title, $uri, $description) {
+		$uri = filter_var($uri, FILTER_VALIDATE_URL);
+
+		if ($uri === false) {
+			throw new InvalidURIException();
+		}
+
 		$this->title = $title;
 		$this->uri = $uri;
 		$this->description = $description;
