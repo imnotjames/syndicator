@@ -79,6 +79,11 @@ class RSSXML implements Serializer {
 
 		// optional
 
+		$language = $feed->getLanguage();
+		if (!is_null($language)) {
+			$channelXML->addChild('language', $language);
+		}
+
 		$dateUpdated = $feed->getDateUpdated();
 		if (!is_null($dateUpdated)) {
 			$channelXML->addChild('lastBuildDate', $dateUpdated->format(self::DATE_FORMAT));
