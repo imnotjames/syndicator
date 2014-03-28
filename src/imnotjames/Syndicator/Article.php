@@ -149,7 +149,7 @@ class Article {
 	}
 
 	/**
-	 * @param int $id
+	 * @param string $id
 	 */
 	public function setID($id) {
 		$this->id = $id;
