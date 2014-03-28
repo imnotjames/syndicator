@@ -4,6 +4,11 @@ namespace imnotjames\Syndicator;
 use DateTime;
 use imnotjames\Syndicator\Exceptions\InvalidURIException;
 
+/**
+ * An article in a syndication feed
+ *
+ * @package imnotjames\Syndicator
+ */
 class Article {
 	/**
 	 * @var string
