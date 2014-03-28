@@ -61,21 +61,12 @@ class Article {
 	private $categories = array();
 
 	/**
-	 * @param string $title
-	 * @param string $description
-	 * @param string $uri
+	 * @param string $id
 	 *
 	 * @throws Exceptions\InvalidURIException
 	 */
-	public function __construct($title, $description, $uri) {
-		$uri = filter_Var($uri, FILTER_VALIDATE_URL);
-		if ($uri === false) {
-			throw new InvalidURIException();
-		}
-
-		$this->title = $title;
-		$this->description = $description;
-		$this->uri = $uri;
+	public function __construct($id = null) {
+		$this->id = $id;
 	}
 
 	/**
