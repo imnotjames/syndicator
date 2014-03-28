@@ -4,6 +4,7 @@ namespace imnotjames\Syndicator;
 use imnotjames\Syndicator\Exceptions\InvalidURIException;
 use IteratorAggregate;
 use ArrayIterator;
+use DateTime;
 
 /**
  * Syndication feed
@@ -148,6 +149,78 @@ class Feed implements IteratorAggregate {
 	 */
 	public function getLogoURI() {
 		return $this->logoURI;
+	}
+
+	/**
+	 * @param string $title
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+
+	/**
+	 * @param string $subtitle
+	 */
+	public function setSubtitle($subtitle) {
+		$this->subtitle = $subtitle;
+	}
+
+	/**
+	 * @param string $description
+	 */
+	public function setDescription($description) {
+		$this->description = $description;
+	}
+
+	/**
+	 * @param string $uri
+	 *
+	 * @throws Exceptions\InvalidURIException
+	 */
+	public function setURI($uri) {
+		$uri = filter_var($uri, FILTER_VALIDATE_URL);
+
+		if ($uri === false) {
+			throw new InvalidURIException();
+		}
+
+		$this->uri = $uri;
+	}
+
+	/**
+	 * @param DateTime $datePublished
+	 */
+	public function setDatePublished(DateTime $datePublished) {
+		$this->datePublished = $datePublished;
+	}
+
+	/**
+	 * @param DateTime $dateUpdated
+	 */
+	public function setDateUpdated(DateTime $dateUpdated) {
+		$this->dateUpdated = $dateUpdated;
+	}
+
+	/**
+	 * @param string $language
+	 */
+	public function setLanguage($language) {
+		$this->language = $language;
+	}
+
+	/**
+	 * @param string $logoURI
+	 *
+	 * @throws Exceptions\InvalidURIException
+	 */
+	public function setLogoURI($logoURI) {
+		$logoURI = filter_var($logoURI, FILTER_VALIDATE_URL);
+
+		if ($logoURI === false) {
+			throw new InvalidURIException();
+		}
+
+		$this->logoURI = $logoURI;
 	}
 
 	/**
