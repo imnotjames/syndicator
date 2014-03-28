@@ -52,6 +52,11 @@ class Feed implements IteratorAggregate {
 	private $logoURI;
 
 	/**
+	 * @var string
+	 */
+	private $language;
+
+	/**
 	 * @var array
 	 */
 	private $categories = array();
@@ -129,6 +134,13 @@ class Feed implements IteratorAggregate {
 	 */
 	public function getArticles() {
 		return $this->articles;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLanguage() {
+		return $this->language;
 	}
 
 	/**
