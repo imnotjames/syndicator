@@ -75,8 +75,6 @@ class RSSXML implements Serializer {
 		$channelXML->addChild('link', $feed->getURI());
 		$channelXML->addChild('description', $feed->getDescription());
 
-		$channelXML->addChild('generator', $this->generator);
-
 		// optional
 
 		$language = $feed->getLanguage();
@@ -84,15 +82,17 @@ class RSSXML implements Serializer {
 			$channelXML->addChild('language', $language);
 		}
 
+		$datePublished = $feed->getDatePublished();
+		if (!is_null($datePublished)) {
+			$channelXML->addChild('pubDate', $datePublished->format(self::DATE_FORMAT));
+		}
+
 		$dateUpdated = $feed->getDateUpdated();
 		if (!is_null($dateUpdated)) {
 			$channelXML->addChild('lastBuildDate', $dateUpdated->format(self::DATE_FORMAT));
 		}
 
-		$datePublished = $feed->getDatePublished();
-		if (!is_null($datePublished)) {
-			$channelXML->addChild('pubDate', $datePublished->format(self::DATE_FORMAT));
-		}
+		$channelXML->addChild('generator', $this->generator);
 
 		$logoURI = $feed->getLogoURI();
 		if (!is_null($logoURI)) {
