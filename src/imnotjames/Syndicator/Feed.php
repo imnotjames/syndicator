@@ -58,12 +58,12 @@ class Feed implements IteratorAggregate {
 
 	/**
 	 * @param string $title
-	 * @param string $uri
 	 * @param string $description
+	 * @param string $uri
 	 *
 	 * @throws Exceptions\InvalidURIException
 	 */
-	public function __construct($title, $uri, $description) {
+	public function __construct($title, $description, $uri) {
 		$uri = filter_var($uri, FILTER_VALIDATE_URL);
 
 		if ($uri === false) {
