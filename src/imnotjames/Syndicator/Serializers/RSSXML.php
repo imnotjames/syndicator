@@ -34,7 +34,7 @@ class RSSXML implements Serializer {
 	 *
 	 * @param string $encoding
 	 */
-	public function __construct($encoding = 'UTF-8') {
+	public function __construct($encoding = null) {
 		$this->encoding = $encoding;
 	}
 
@@ -58,7 +58,7 @@ class RSSXML implements Serializer {
 	 * @return mixed|string
 	 */
 	public function serialize(Feed $feed) {
-		$feedXML = new SimpleXMLElement('<?xml version="1.0" encoding="' . $this->encoding . '" ?><rss version="2.0" />');
+		$feedXML = new SimpleXMLElement('<?xml version="1.0"' . ($this->encoding ? ' encoding="' . $this->encoding . '"' : '') . '?><rss version="2.0" />');
 
 		$channelXML = $feedXML->addChild('channel');
 
