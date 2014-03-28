@@ -1,6 +1,8 @@
 <?php
 namespace imnotjames\Syndicator;
 
+use imnotjames\Syndicator\Exceptions\InvalidURIException;
+
 /**
  * A link to a file, in an article
  *
@@ -34,8 +36,16 @@ class Enclosure {
 	 * @param string $uri
 	 * @param int    $length
 	 * @param string $type
+	 *
+	 * @throws Exceptions\InvalidURIException
 	 */
 	public function __construct($uri, $length, $type) {
+		$uri = filter_var($uri, FILTER_VALIDATE_URL);
+
+		if ($uri === false) {
+			throw new InvalidURIException();
+		}
+
 		$this->uri = $uri;
 		$this->length = (int) $length;
 		$this->type = $type;
