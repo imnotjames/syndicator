@@ -1,6 +1,7 @@
 <?php
 namespace imnotjames\Syndicator\Serializers;
 
+use imnotjames\Syndicator\Exceptions\SerializationException;
 use imnotjames\Syndicator\Feed;
 use imnotjames\Syndicator\Serializer;
 use SimpleXMLElement;
@@ -105,9 +106,25 @@ class RSSXML implements Serializer {
 			 */
 			$itemXML = $channelXML->addChild('item');
 
-			$itemXML->addChild('title', $article->getTitle());
-			$itemXML->addChild('link', $article->getURI());
-			$itemXML->addChild('description', $article->getDescription());
+			$title = $article->getTitle();
+			$link = $article->getURI();
+			$description = $article->getDescription();
+
+			if (is_null($title) && is_null($description)) {
+				throw new SerializationException('Articles must have at least a title or description');
+			}
+
+			if (! is_null($title)) {
+				$itemXML->addChild('title', $title);
+			}
+
+			if (!is_null($link)) {
+				$itemXML->addChild('link', $link);
+			}
+
+			if (!is_null($description)) {
+				$itemXML->addChild('description', $description);
+			}
 
 			$categories = $article->getCategories();
 			foreach ($categories as $category) {
