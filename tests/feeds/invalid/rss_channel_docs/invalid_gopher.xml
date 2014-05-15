@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case that fails because the docs is not a URI with a good schema (gopher is dead, long live gopher)</description>
+		<docs>gopher://example.com/</docs>
+	</channel>
+</rss>
