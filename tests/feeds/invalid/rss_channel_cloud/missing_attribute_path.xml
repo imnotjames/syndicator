@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case that fails because the path attribute is missing</description>
+		<cloud domain="example.com" port="80" registerProcedure="foo" protocol="xml-rpc"/>
+	</channel>
+</rss>
+
