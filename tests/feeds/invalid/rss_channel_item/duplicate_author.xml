@@ -3,7 +3,7 @@
 	<channel>
 		<title>Test Case</title>
 		<link>https://github.com/imnotjames/syndicator</link>
-		<description>This is a test case</description>
+		<description>This is a test case that fails because the item author occurs twice</description>
 		<item>
 			<title>Test Case</title>
 			<link>https://github.com/imnotjames/syndicator</link>
