@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case</description>
+		<item>
+			<title>Test Case</title>
+			<link>https://github.com/imnotjames/syndicator</link>
+			<description>This is a test case item</description>
+			<author>foo@example.com (Foo)</author>
+			<author>foo@example.com (Foo)</author>
+		</item>
+	</channel>
+</rss>
+

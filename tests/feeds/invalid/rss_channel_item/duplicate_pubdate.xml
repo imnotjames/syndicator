@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+        <channel>
+                <title>Test Case</title>
+                <link>https://github.com/imnotjames/syndicator</link>
+                <description>This is a test case</description>
+                <item>
+                        <title>Test Case</title>
+                        <link>https://github.com/imnotjames/syndicator</link>
+                        <description>This is a test case item</description>
+			<pubDate>Sun, 19 May 2002 15:21:36 GMT</pubDate>
+			<pubDate>Sun, 19 May 2002 15:21:36 GMT</pubDate>
+                </item>
+        </channel>
+</rss>
+
