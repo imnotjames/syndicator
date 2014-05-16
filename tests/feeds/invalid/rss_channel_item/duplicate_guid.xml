@@ -1,16 +1,17 @@
 <?xml version="1.0"?>
+<!-- exception message: invalid item element -->
 <rss version="2.0">
-        <channel>
-                <title>Test Case</title>
-                <link>https://github.com/imnotjames/syndicator</link>
-                <description>This is a test case that fails beucase the item guid occurs twice</description>
-                <item>
-                        <title>Test Case</title>
-                        <link>https://github.com/imnotjames/syndicator</link>
-                        <description>This is a test case item</description>
-                        <guid>http://example.com/1</guid>
-                        <guid>http://example.com/2</guid>
-                </item>
-        </channel>
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case that fails beucase the item guid occurs twice</description>
+		<item>
+			<title>Test Case</title>
+			<link>https://github.com/imnotjames/syndicator</link>
+			<description>This is a test case item</description>
+			<guid>http://example.com/1</guid>
+			<guid>http://example.com/2</guid>
+		</item>
+	</channel>
 </rss>
 
