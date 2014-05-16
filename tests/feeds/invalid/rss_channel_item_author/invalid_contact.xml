@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- exception message: invalid author element -->
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case that fails because the item author has no email in it</description>
+		<item>
+			<title>Test Case</title>
+			<link>https://github.com/imnotjames/syndicator</link>
+			<description>This is a test case item</description>
+			<author>no email here</author>
+		</item>
+	</channel>
+</rss>
