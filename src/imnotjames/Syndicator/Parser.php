@@ -12,6 +12,8 @@ interface Parser {
 	 *
 	 * @param $string
 	 *
+	 * @throws \imnotjames\Syndicator\Exceptions\ParsingException
+	 *
 	 * @return Feed
 	 */
 	public function parse($string);

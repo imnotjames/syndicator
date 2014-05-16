@@ -12,6 +12,8 @@ interface Serializer {
 	 *
 	 * @param Feed $feed
 	 *
+	 * @throws \imnotjames\Syndicator\Exceptions\SerializationException
+	 *
 	 * @return string
 	 */
 	public function serialize(Feed $feed);
