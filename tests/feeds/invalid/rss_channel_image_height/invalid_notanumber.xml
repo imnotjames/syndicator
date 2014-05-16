@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case that fails because the image height is not a number</description>
+		<image>
+			<url>http://example.com/example.png</url>
+			<title>Test Case</title>
+			<link>https://github.com/imnotjames/syndicator</link>
+			<height>foo</height>
+		</image>
+	</channel>
+</rss>
+
