@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- exception message: invalid lastBuildDate element -->
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case that fails because the lastBuildDate element is blank</description>
+		<lastBuildDate></lastBuildDate>
+	</channel>
+</rss>
+

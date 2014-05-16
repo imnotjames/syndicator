@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- exception message: invalid pubDate element -->
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case that fails because the pubDate element has a date in a non-RFC822 format</description>
+		<pubDate>2001/10/10 14:43:25</pubDate>
+	</channel>
+</rss>
+

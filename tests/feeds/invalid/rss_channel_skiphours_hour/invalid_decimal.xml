@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- exception message: invalid hour element -->
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case that fails because the hour element is a decimal</description>
+		<skipHours>
+			<hour>15.5</hour>
+		</skipHours>
+	</channel>
+</rss>
+
