@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- exception message: invalid language element -->
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case that fails because the language element is not a ISO639 value</description>
+		<language>English</language>
+	</channel>
+</rss>
