@@ -9,7 +9,7 @@
 			<title>Test Case</title>
 			<link>https://github.com/imnotjames/syndicator</link>
 			<description>This is a test case item</description>
-			<enclosure url="http://example.com/example.mp3" length="1234" type="audio/mpeg" />
+			<enclosure url="invalid uri" length="1234" type="audio/mpeg" />
 		</item>
 	</channel>
 </rss>
