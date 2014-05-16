@@ -5,16 +5,16 @@
 		<link>https://github.com/imnotjames/syndicator</link>
 		<description>This is a test case that fails because the skipHours occurs twice</description>
 		<textInput>
-            <title>Text input title</title>
-            <description>Text input description</description>
-            <name>Text input name</name>
-            <link>http://example.com/</link>
+			<title>Text input title</title>
+			<description>Text input description</description>
+			<name>Text input name</name>
+			<link>http://example.com/</link>
 		</textInput>
 		<textInput>
-            <title>Text input title</title>
-            <description>Text input description</description>
-            <name>Text input name</name>
-            <link>http://example.com/</link>
+			<title>Text input title</title>
+			<description>Text input description</description>
+			<name>Text input name</name>
+			<link>http://example.com/</link>
 		</textInput>
 	</channel>
 </rss>

@@ -4,7 +4,7 @@
 		<title>Test Case</title>
 		<link>https://github.com/imnotjames/syndicator</link>
 		<description>This is a test case that fails because the docs occurs twice</description>
-        <docs>https://github.com/imnotjames/syndicator</docs>
-        <docs>https://github.com/imnotjames/syndicator</docs>
+		<docs>https://github.com/imnotjames/syndicator</docs>
+		<docs>https://github.com/imnotjames/syndicator</docs>
 	</channel>
 </rss>

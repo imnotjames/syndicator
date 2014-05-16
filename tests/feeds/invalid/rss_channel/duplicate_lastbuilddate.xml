@@ -4,7 +4,7 @@
 		<title>Test Case</title>
 		<link>https://github.com/imnotjames/syndicator</link>
 		<description>This is a test case that fails because the last build date occurs twice</description>
-        <lastBuildDate>Tue, 1 Jun 2000 00:01:01 GMT</lastBuildDate>
-        <lastBuildDate>Tue, 1 Jun 2003 01:01:01 GMT</lastBuildDate>
+		<lastBuildDate>Tue, 1 Jun 2000 00:01:01 GMT</lastBuildDate>
+		<lastBuildDate>Tue, 1 Jun 2003 01:01:01 GMT</lastBuildDate>
 	</channel>
 </rss>

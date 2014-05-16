@@ -4,15 +4,15 @@
 		<title>Test Case</title>
 		<link>https://github.com/imnotjames/syndicator</link>
 		<description>This is a test case that fails because the image occurs twice</description>
-        <image>
-            <title>Test case</title>
-            <url>http://example.com/example.png</url>
-            <link>https://github.com/imnotjames/syndicator</link>
-        </image>
-        <image>
-            <title>Test case</title>
-            <url>http://example.com/example.png</url>
-            <link>https://github.com/imnotjames/syndicator</link>
-        </image>
+		<image>
+			<title>Test case</title>
+			<url>http://example.com/example.png</url>
+			<link>https://github.com/imnotjames/syndicator</link>
+		</image>
+		<image>
+			<title>Test case</title>
+			<url>http://example.com/example.png</url>
+			<link>https://github.com/imnotjames/syndicator</link>
+		</image>
 	</channel>
 </rss>
