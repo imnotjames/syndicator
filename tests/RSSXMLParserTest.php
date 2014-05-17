@@ -23,7 +23,7 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	 *
 	 * @param $input
 	 */
-	public function testParse($input) {
+	public function testValidate($input) {
 		$xml = file_get_contents($input);
 
 		$expectedException = '\imnotjames\Syndicator\Exceptions\ParsingException';
@@ -44,7 +44,7 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 
 		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
 
-		$parser->parse($xml);
+		$parser->validate($xml);
 	}
 }
 
