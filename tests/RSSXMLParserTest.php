@@ -4,12 +4,12 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @return \Iterator
 	 */
-	public function getDataSourceInvalidRSS() {
+	public function getDataSourceRSS($directory) {
 		return new DataProviderIterator(
 			new RegexIterator(
 				new RecursiveIteratorIterator(
 					new RecursiveDirectoryIterator(
-						'./tests/feeds/invalid/',
+						$directory,
 						FilesystemIterator::SKIP_DOTS
 					)
 				),
@@ -19,11 +19,25 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @return \Iterator
+	 */
+	public function getDataSourceInvalidRSS() {
+		return $this->getDataSourceRSS('./tests/feeds/invalid/');
+	}
+
+	/**
+	 * @return \Iterator
+	 */
+	public function getDataSourceValidRSS() {
+		return $this->getDataSourceRSS('./tests/feeds/valid/');
+	}
+
+	/**
 	 * @dataProvider getDataSourceInvalidRSS
 	 *
 	 * @param $input
 	 */
-	public function testValidate($input) {
+	public function testValidateInvalid($input) {
 		$xml = file_get_contents($input);
 
 		$expectedException = '\imnotjames\Syndicator\Exceptions\ParsingException';
@@ -41,6 +55,20 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 		} else {
 			$this->setExpectedException($expectedException);
 		}
+
+		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
+
+		$parser->validate($xml);
+	}
+
+
+	/**
+	 * @dataProvider getDataSourceValidRSS
+	 *
+	 * @param $input
+	 */
+	public function testValidateValid($input) {
+		$xml = file_get_contents($input);
 
 		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
 
