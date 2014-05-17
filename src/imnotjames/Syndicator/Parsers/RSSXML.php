@@ -567,8 +567,6 @@ class RSSXML implements Parser {
 		if (isset($guid['isPermaLink'])) {
 			$isPermalink = strtolower((string) $guid['isPermaLink']);
 
-			var_dump($isPermalink);
-
 			if (!in_array($isPermalink, array('true', 'false'))) {
 				throw new ParsingException('invalid guid element: invalid isPermaLink attribute');
 			}
