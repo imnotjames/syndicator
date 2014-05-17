@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- exception message: invalid name element -->
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case that fails because the the textInput name element is blank</description>
+		<textInput>
+			<title>Test case</title>
+			<description>This is a test case</description>
+			<name></name>
+			<link>https://github.com/imnotjames/syndicator</link>
+		</textInput>
+	</channel>
+</rss>
+
