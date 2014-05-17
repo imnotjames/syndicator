@@ -9,13 +9,13 @@
 			<title>Test Case</title>
 			<link>https://github.com/imnotjames/syndicator</link>
 			<description>This is a test case item</description>
-			<guid isPemalink="false">1</guid>
+			<guid isPemaLink="false">1</guid>
 		</item>
 		<item>
 			<title>Test Case</title>
 			<link>https://github.com/imnotjames/syndicator</link>
 			<description>This is a test case item</description>
-			<guid isPemalink="false">1</guid>
+			<guid isPemaLink="false">1</guid>
 		</item>
 	</channel>
 </rss>

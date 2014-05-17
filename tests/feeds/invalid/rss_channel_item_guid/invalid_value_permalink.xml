@@ -9,7 +9,7 @@
 			<title>Test Case</title>
 			<link>https://github.com/imnotjames/syndicator</link>
 			<description>This is a test case item</description>
-			<guid isPermalink="true">invalid uri</guid>
+			<guid isPermaLink="true">invalid uri</guid>
 		</item>
 	</channel>
 </rss>
