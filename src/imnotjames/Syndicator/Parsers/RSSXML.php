@@ -29,15 +29,18 @@ class RSSXML implements Parser {
 	}
 
 	/**
-	 * Validate an RFC822 Date that is the text of an element.
+	 * Validate Date and time that is the text of an element.
 	 *
 	 * @param SimpleXMLElement $element
 	 *
 	 * @throws \imnotjames\Syndicator\Exceptions\ParsingException
 	 */
-	private function validateRFC822Date(SimpleXMLElement $element) {
-		if (DateTime::createFromFormat(DateTime::RFC822, (string) $element) === false) {
-			throw new ParsingException('invalid ' . $element->getName() . ' element: invalid ');
+	private function validateDateTime(SimpleXMLElement $element) {
+		$rfc822 = DateTime::createFromFormat(DateTime::RSS, (string) $element);
+		$rfc2822 = DateTime::createFromFormat(DateTime::RSS, (string) $element);
+
+		if ($rfc822 === false && $rfc2822 === false) {
+			throw new ParsingException('invalid ' . $element->getName() . ' element: invalid date format');
 		}
 	}
 
@@ -235,7 +238,7 @@ class RSSXML implements Parser {
 				throw new ParsingException('invalid channel element: duplicate lastBuildDate element');
 			}
 
-			$this->validateRFC822Date($channel->lastBuildDate);
+			$this->validateDateTime($channel->lastBuildDate);
 		}
 
 		// Optional managingEditor element
@@ -253,7 +256,7 @@ class RSSXML implements Parser {
 				throw new ParsingException('invalid channel element: duplicate pubDate element');
 			}
 
-			$this->validateRFC822Date($channel->pubDate);
+			$this->validateDateTime($channel->pubDate);
 		}
 
 		// Optional skipDays element
@@ -529,7 +532,7 @@ class RSSXML implements Parser {
 				throw new ParsingException('invalid item element: duplicate pubDate element');
 			}
 
-			$this->validateRFC822Date($item->pubDate);
+			$this->validateDateTime($item->pubDate);
 		}
 
 		// Optional source element
