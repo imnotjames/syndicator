@@ -318,7 +318,7 @@ class RSSXML implements Parser {
 	 *   protocol
 	 *   domain
 	 *   path
-	 *   registeredProcedure
+	 *   registerProcedure
 	 *
 	 * Furthermore:
 	 *   port must be a positive integer less than or equal to 65535
@@ -356,8 +356,8 @@ class RSSXML implements Parser {
 			throw new ParsingException('invalid cloud element: missing path attribute');
 		}
 
-		if (!isset($cloud['registeredProcedure'])) {
-			throw new ParsingException('invalid cloud element: missing registeredProcedure attribute');
+		if (!isset($cloud['registerProcedure'])) {
+			throw new ParsingException('invalid cloud element: missing registerProcedure attribute');
 		}
 	}
 
