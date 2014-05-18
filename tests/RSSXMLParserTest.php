@@ -74,5 +74,17 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 
 		$parser->validate($xml);
 	}
+
+	public function testParseBasic() {
+		$xml = file_get_contents('./tests/feeds/valid/basic.xml');
+
+		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
+
+		$feed = $parser->parse($xml);
+
+		$this->assertEquals('Test Case', $feed->getTitle());
+		$this->assertEquals('https://github.com/imnotjames/syndicator', $feed->getURI());
+		$this->assertEquals('This is a test case', $feed->getDescription());
+	}
 }
 
