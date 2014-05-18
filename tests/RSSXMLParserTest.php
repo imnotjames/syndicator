@@ -86,5 +86,38 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('https://github.com/imnotjames/syndicator', $feed->getURI());
 		$this->assertEquals('This is a test case', $feed->getDescription());
 	}
+
+	public function testParseBasicWithArticles() {
+		$xml = file_get_contents('./tests/feeds/valid/basic_articles.xml');
+
+		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
+
+		$feed = $parser->parse($xml);
+
+		$this->assertEquals('Test Case', $feed->getTitle());
+		$this->assertEquals('https://github.com/imnotjames/syndicator', $feed->getURI());
+		$this->assertEquals('This is a test case', $feed->getDescription());
+
+		$this->assertCount(2, $feed->getArticles());
+
+		$titles = array();
+		$uris = array();
+		$descriptions = array();
+
+		foreach ($feed->getArticles() as $article) {
+			$titles[] = $article->getTitle();
+			$uris[] = $article->getURI();
+			$descriptions[] = $article->getDescription();
+		}
+
+		$this->assertContains('Test article 1', $titles);
+		$this->assertContains('Test article 2', $titles);
+
+		$this->assertContains('http://example.com/1', $uris);
+		$this->assertContains('http://example.com/2', $uris);
+
+		$this->assertContains('This is a test article', $descriptions);
+		$this->assertContains('This is also a test article', $descriptions);
+	}
 }
 
