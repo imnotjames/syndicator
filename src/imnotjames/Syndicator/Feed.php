@@ -35,6 +35,11 @@ class Feed implements IteratorAggregate {
 	/**
 	 * @var string
 	 */
+	private $documentationUri;
+
+	/**
+	 * @var string
+	 */
 	private $description;
 
 	/**
@@ -112,6 +117,13 @@ class Feed implements IteratorAggregate {
 	 */
 	public function getURI() {
 		return $this->uri;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDocumentationURI() {
+		return $this->documentationUri;
 	}
 
 	/**
@@ -197,6 +209,21 @@ class Feed implements IteratorAggregate {
 		}
 
 		$this->uri = $uri;
+	}
+
+	/**
+	 * @param $uri
+	 *
+	 * @throws Exceptions\InvalidURIException
+	 */
+	public function setDocumentationURI($uri) {
+		$uri = filter_var($uri, FILTER_VALIDATE_URL);
+
+		if ($uri === false) {
+			throw new InvalidURIException();
+		}
+
+		$this->documentationUri = $uri;
 	}
 
 	/**
