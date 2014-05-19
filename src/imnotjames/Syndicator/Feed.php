@@ -63,6 +63,11 @@ class Feed implements IteratorAggregate {
 	private $categories = array();
 
 	/**
+	 * @var int
+	 */
+	private $ttl = 0;
+
+	/**
 	 * @param string $title
 	 * @param string $description
 	 * @param string $uri
@@ -152,6 +157,13 @@ class Feed implements IteratorAggregate {
 	}
 
 	/**
+	 * @return int
+	 */
+	public function getCacheTimeToLive() {
+		return $this->ttl;
+	}
+
+	/**
 	 * @param string $title
 	 */
 	public function setTitle($title) {
@@ -221,6 +233,13 @@ class Feed implements IteratorAggregate {
 		}
 
 		$this->logoURI = $logoURI;
+	}
+
+	/**
+	 * @param $ttl
+	 */
+	public function setCacheTimeToLive($ttl) {
+		$this->ttl = $ttl;
 	}
 
 	/**
