@@ -1,6 +1,7 @@
 <?php
 namespace imnotjames\Syndicator\Parsers;
 
+use imnotjames\Syndicator\Article;
 use imnotjames\Syndicator\Exceptions\ParsingException;
 use imnotjames\Syndicator\Feed;
 use imnotjames\Syndicator\Parser;
@@ -779,7 +780,33 @@ class RSSXML implements Parser {
 
 		$feed = new Feed($title, $description, $link);
 
+		if (isset($xml->channel->item)) {
+			foreach ($xml->channel->item as $item) {
+				$article = $this->parseArticle($item);
+
+				if (!is_null($article)) {
+					$feed->addArticle($article);
+				}
+			}
+		}
+
 		return $feed;
+	}
+
+	/**
+	 * @param SimpleXMLElement $item
+	 *
+	 * @return Article
+	 * @throws \imnotjames\Syndicator\Exceptions\InvalidURIException
+	 */
+	private function parseArticle(SimpleXMLElement $item) {
+		$article = new Article();
+
+		$article->setTitle((string) $item->title);
+		$article->setURI((string) $item->link);
+		$article->setDescription((string) $item->description);
+
+		return $article;
 	}
 
 	/**
