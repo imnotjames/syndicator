@@ -82,6 +82,8 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 
 		$feed = $parser->parse($xml);
 
+		$this->assertNotNull($feed);
+
 		$this->assertEquals('Test Case', $feed->getTitle());
 		$this->assertEquals('https://github.com/imnotjames/syndicator', $feed->getURI());
 		$this->assertEquals('This is a test case', $feed->getDescription());
@@ -93,6 +95,8 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
 
 		$feed = $parser->parse($xml);
+
+		$this->assertNotNull($feed);
 
 		$this->assertEquals('Test Case', $feed->getTitle());
 		$this->assertEquals('https://github.com/imnotjames/syndicator', $feed->getURI());
