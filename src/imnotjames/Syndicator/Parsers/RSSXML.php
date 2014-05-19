@@ -766,6 +766,23 @@ class RSSXML implements Parser {
 	}
 
 	/**
+	 * Parse a Feed object from xml
+	 *
+	 * @param SimpleXMLElement $xml
+	 *
+	 * @return Feed
+	 */
+	private function parseFeed(SimpleXMLElement $xml) {
+		$title = (string) $xml->channel->title;
+		$link = (string) $xml->channel->link;
+		$description = (string) $xml->channel->description;
+
+		$feed = new Feed($title, $description, $link);
+
+		return $feed;
+	}
+
+	/**
 	 * Parse a Feed from a string
 	 *
 	 * @param $string
@@ -779,6 +796,6 @@ class RSSXML implements Parser {
 
 		$this->validateRssElement($xml);
 
-		return null;
+		return $this->parseFeed($xml);
 	}
 }
