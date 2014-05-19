@@ -63,6 +63,16 @@ class Feed implements IteratorAggregate {
 	private $language;
 
 	/**
+	 * @var Contact
+	 */
+	private $editorContact;
+
+	/**
+	 * @var Contact
+	 */
+	private $webmasterContact;
+
+	/**
 	 * @var array
 	 */
 	private $categories = array();
@@ -169,6 +179,20 @@ class Feed implements IteratorAggregate {
 	}
 
 	/**
+	 * @return Contact|null
+	 */
+	public function getEditorContact() {
+		return $this->editorContact;
+	}
+
+	/**
+	 * @return Contact|null
+	 */
+	public function getWebmasterContact() {
+		return $this->webmasterContact;
+	}
+
+	/**
 	 * @return int
 	 */
 	public function getCacheTimeToLive() {
@@ -260,6 +284,20 @@ class Feed implements IteratorAggregate {
 		}
 
 		$this->logoURI = $logoURI;
+	}
+
+	/**
+	 * @param Contact $contact
+	 */
+	public function setEditorContact(Contact $contact = null) {
+		$this->editorContact = $contact;
+	}
+
+	/**
+	 * @param Contact $contact
+	 */
+	public function setWebmasterContact(Contact $contact = null) {
+		$this->webmasterContact = $contact;
 	}
 
 	/**
