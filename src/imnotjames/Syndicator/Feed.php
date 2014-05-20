@@ -55,7 +55,7 @@ class Feed implements IteratorAggregate {
 	/**
 	 * @var string
 	 */
-	private $logoURI;
+	private $logo;
 
 	/**
 	 * @var string
@@ -177,10 +177,10 @@ class Feed implements IteratorAggregate {
 	}
 
 	/**
-	 * @return string
+	 * @return Logo
 	 */
-	public function getLogoURI() {
-		return $this->logoURI;
+	public function getLogo() {
+		return $this->logo;
 	}
 
 	/**
@@ -284,18 +284,10 @@ class Feed implements IteratorAggregate {
 	}
 
 	/**
-	 * @param string $logoURI
-	 *
-	 * @throws Exceptions\InvalidURIException
+	 * @param Logo $logo
 	 */
-	public function setLogoURI($logoURI) {
-		$logoURI = filter_var($logoURI, FILTER_VALIDATE_URL);
-
-		if ($logoURI === false) {
-			throw new InvalidURIException();
-		}
-
-		$this->logoURI = $logoURI;
+	public function setLogo(Logo $logo = null) {
+		$this->logo = $logo;
 	}
 
 	/**
