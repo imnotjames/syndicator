@@ -83,6 +83,11 @@ class Feed implements IteratorAggregate {
 	private $ttl = 0;
 
 	/**
+	 * @var Subscription
+	 */
+	private $subscription;
+
+	/**
 	 * @param string $title
 	 * @param string $description
 	 * @param string $uri
@@ -200,6 +205,13 @@ class Feed implements IteratorAggregate {
 	}
 
 	/**
+	 * @return Subscription
+	 */
+	public function getSubscription() {
+		return $this->subscription;
+	}
+
+	/**
 	 * @param string $title
 	 */
 	public function setTitle($title) {
@@ -305,6 +317,13 @@ class Feed implements IteratorAggregate {
 	 */
 	public function setCacheTimeToLive($ttl) {
 		$this->ttl = $ttl;
+	}
+
+	/**
+	 * @param Subscription $subscription
+	 */
+	public function setSubscription(Subscription $subscription) {
+		$this->subscription = $subscription;
 	}
 
 	/**
