@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case</description>
+		<cloud domain="http://example.com" path="/rpc" port="80" registerProcedure="foo" protocol="xml-rpc" />
+		<image>
+			<url>http://example.com/example.gif</url>
+			<link>https://github.com/imnotjames/syndicator</link>
+			<title>Test Case</title>
+			<description>This is a test case image</description>
+			<width>12</width>
+			<height>34</height>
+		</image>
+		<docs>http://example.com/rss/docs</docs>
+		<language>en-us</language>
+		<lastBuildDate>Fri, 16 May 2014 12:00:00 EDT</lastBuildDate>
+		<pubDate>Fri, 2 May 2014 12:00:00 EDT</pubDate>
+		<managingEditor>foo@example.com (Boodley bop de Bop)</managingEditor>
+		<webMaster>webmaster@example.com (Webley Masterson)</webMaster>
+		<ttl>64</ttl>
+	</channel>
+</rss>
