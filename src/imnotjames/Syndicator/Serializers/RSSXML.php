@@ -96,9 +96,29 @@ class RSSXML implements Serializer {
 
 		$channelXML->addChild('generator', $this->generator);
 
-		$logoURI = $feed->getLogoURI();
-		if (!is_null($logoURI)) {
-			$channelXML->addChild('image', $logoURI);
+		$logo = $feed->getLogo();
+		if (!is_null($logo)) {
+			$imageXML = $channelXML->addChild('image');
+
+			$imageXML->addChild('uri', $logo->getURI());
+			$imageXML->addChild('link', $logo->getLink() ?: $feed->getURI());
+			$imageXML->addChild('title', $logo->getTitle() ?: $feed->getTitle());
+
+			$description = $logo->getDescription();
+			$width = $logo->getWidth();
+			$height = $logo->getHeight();
+
+			if (!is_null($description)) {
+				$imageXML->addChild('description', $description);
+			}
+
+			if (!is_null($width)) {
+				$imageXML->addChild('width', $width);
+			}
+
+			if (!is_null($height)) {
+				$imageXML->addChild('height', $height);
+			}
 		}
 
 		$categories = $feed->getCategories();
