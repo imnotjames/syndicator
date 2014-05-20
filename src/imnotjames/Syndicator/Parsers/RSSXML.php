@@ -2,10 +2,13 @@
 namespace imnotjames\Syndicator\Parsers;
 
 use imnotjames\Syndicator\Article;
+use imnotjames\Syndicator\Contact;
 use imnotjames\Syndicator\Exceptions\ParsingException;
 use imnotjames\Syndicator\Feed;
+use imnotjames\Syndicator\Logo;
 use imnotjames\Syndicator\Parser;
 use DateTime;
+use imnotjames\Syndicator\Subscription;
 use SimpleXMLElement;
 
 /**
@@ -790,7 +793,95 @@ class RSSXML implements Parser {
 			}
 		}
 
+		if (isset($xml->channel->cloud)) {
+			$feed->setSubscription($this->parseSubscription($xml->channel->cloud));
+		}
+
+		if (isset($xml->channel->image)) {
+			$feed->setLogo($this->parseLogo($xml->channel->image));
+		}
+
+		if (isset($xml->channel->managingEditor)) {
+			$feed->setEditorContact($this->parseContact($xml->channel->managingEditor));
+		}
+
+		if (isset($xml->channel->webMaster)) {
+			$feed->setWebmasterContact($this->parseContact($xml->channel->webMaster));
+		}
+
+		if (isset($xml->channel->docs)) {
+			$feed->setDocumentationURI((string) $xml->channel->docs);
+		}
+
+		if (isset($xml->channel->language)) {
+			$feed->setLanguage((string) $xml->channel->language);
+		}
+
+		if (isset($xml->channel->ttl)) {
+			$feed->setCacheTimeToLive(intval($xml->channel->ttl));
+		}
+
+		if (isset($xml->channel->pubDate)) {
+			$pubDate = DateTime::createFromFormat(DateTime::RSS, (string) $xml->channel->pubDate);
+
+			$feed->setDatePublished($pubDate);
+		}
+
+		if (isset($xml->channel->lastBuildDate)) {
+			$lastBuildDate = DateTime::createFromFormat(DateTime::RSS, (string) $xml->channel->lastBuildDate);
+
+			$feed->setDateUpdated($lastBuildDate);
+		}
+
 		return $feed;
+	}
+
+	/**
+	 * @param SimpleXMLElement $contact
+	 *
+	 * @return Contact
+	 */
+	private function parseContact(SimpleXMLElement $contact) {
+		$contactParts = explode(' ', (string) $contact, 2);
+
+		if (empty($contactParts[1])) {
+			return new Contact($contactParts[0]);
+		} else {
+			return new Contact($contactParts[0], trim($contactParts[1], '()'));
+		}
+	}
+
+	private function parseSubscription(SimpleXMLElement $subscription) {
+		return new Subscription(
+				$subscription['domain'],
+				intval($subscription['port']),
+				$subscription['path'],
+				$subscription['protocol'],
+				$subscription['registerProcedure']
+			);
+	}
+
+	/**
+	 * @param SimpleXMLElement $logo
+	 *
+	 * @return Logo
+	 */
+	private function parseLogo(SimpleXMLElement $logo) {
+		$object = new Logo((string) $logo->url, (string) $logo->title, (string) $logo->link);
+
+		if (isset($logo->description)) {
+			$object->setDescription((string) $logo->description);
+		}
+
+		if (isset($logo->width)) {
+			$object->setWidth(intval((string) $logo->width));
+		}
+
+		if (isset($logo->height)) {
+			$object->setHeight(intval((string) $logo->height));
+		}
+
+		return $object;
 	}
 
 	/**
