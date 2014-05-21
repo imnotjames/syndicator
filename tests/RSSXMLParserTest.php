@@ -1,6 +1,7 @@
 <?php
 
 use imnotjames\Syndicator\Contact;
+use imnotjames\Syndicator\Category;
 
 class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	/**
@@ -178,6 +179,29 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('en-us', $feed->getLanguage());
 
 		$this->assertEquals(64, $feed->getCacheTimeToLive());
+
+		$this->assertCount(2, $feed->getCategories());
+
+		$this->assertContainsOnly(
+				'\imnotjames\Syndicator\Category',
+				$feed->getCategories()
+			);
+
+		$this->assertContains(
+				new Category('Bar'),
+				$feed->getCategories(),
+				'',
+				false,
+				false
+			);
+
+		$this->assertContains(
+				new Category('Foo', 'http://example.org/foo'),
+				$feed->getCategories(),
+				'',
+				false,
+				false
+			);
 	}
 }
 
