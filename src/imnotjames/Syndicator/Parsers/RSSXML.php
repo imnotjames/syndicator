@@ -9,6 +9,8 @@ use imnotjames\Syndicator\Feed;
 use imnotjames\Syndicator\Logo;
 use imnotjames\Syndicator\Parser;
 use DateTime;
+use imnotjames\Syndicator\SkipHour;
+use imnotjames\Syndicator\SkipWeekday;
 use imnotjames\Syndicator\Subscription;
 use SimpleXMLElement;
 
@@ -842,6 +844,18 @@ class RSSXML implements Parser {
 			$lastBuildDate = DateTime::createFromFormat(DateTime::RSS, (string) $xml->channel->lastBuildDate);
 
 			$feed->setDateUpdated($lastBuildDate);
+		}
+
+		if (isset($xml->channel->skipHours)) {
+			foreach ($xml->channel->skipHours as $skip) {
+				$feed->addSkip(new SkipHour(intval((string) $skip)));
+			}
+		}
+
+		if (isset($xml->channel->skipDays)) {
+			foreach ($xml->channel->skipDays as $skip) {
+				$feed->addSkip(new SkipWeekday((string) $skip));
+			}
 		}
 
 		return $feed;
