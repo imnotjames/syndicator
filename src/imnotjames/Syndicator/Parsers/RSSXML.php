@@ -851,6 +851,11 @@ class RSSXML implements Parser {
 		}
 	}
 
+	/**
+	 * @param SimpleXMLElement $subscription
+	 *
+	 * @return Subscription
+	 */
 	private function parseSubscription(SimpleXMLElement $subscription) {
 		return new Subscription(
 				$subscription['domain'],
