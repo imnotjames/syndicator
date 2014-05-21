@@ -83,6 +83,11 @@ class Feed implements IteratorAggregate {
 	private $categories = array();
 
 	/**
+	 * @var array
+	 */
+	private $skipping = array();
+
+	/**
 	 * @var int
 	 */
 	private $ttl = 0;
@@ -165,6 +170,13 @@ class Feed implements IteratorAggregate {
 	 */
 	public function getCategories() {
 		return $this->categories;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getSkips() {
+		return $this->skipping;
 	}
 
 	/**
@@ -342,6 +354,13 @@ class Feed implements IteratorAggregate {
 	 */
 	public function addCategory(Category $category) {
 		$this->categories[] = $category;
+	}
+
+	/**
+	 * @param Skip $skip
+	 */
+	public function addSkip(Skip $skip) {
+		$this->skipping[] = $skip;
 	}
 
 	/**
