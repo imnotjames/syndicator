@@ -123,7 +123,11 @@ class RSSXML implements Serializer {
 
 		$categories = $feed->getCategories();
 		foreach ($categories as $category) {
-			$channelXML->addChild('category', $category);
+			$categoryXML = $channelXML->addChild('category', $category->getName());
+
+			if (!is_null($category->getTaxonomy())) {
+				$categoryXML['domain'] = $category->getTaxonomy();
+			}
 		}
 
 		// Generate the feed items
