@@ -36,9 +36,9 @@ class Article {
 	private $copyright;
 
 	/**
-	 * @var Enclsoure
+	 * @var array
 	 */
-	private $enclosure;
+	private $enclosures = array();
 
 	/**
 	 * @var \DateTime
@@ -114,10 +114,10 @@ class Article {
 	}
 
 	/**
-	 * @return Enclosure
+	 * @return array
 	 */
-	public function getEnclosure() {
-		return $this->enclosure;
+	public function getEnclosures() {
+		return $this->enclosures;
 	}
 
 	/**
@@ -179,8 +179,8 @@ class Article {
 	/**
 	 * @param Enclosure $enclosure
 	 */
-	public function setEnclosure(Enclosure $enclosure) {
-		$this->enclosure = $enclosure;
+	public function addEnclosure(Enclosure $enclosure) {
+		$this->enclosures[] = $enclosure;
 	}
 
 	/**
