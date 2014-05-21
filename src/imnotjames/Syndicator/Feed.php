@@ -55,6 +55,11 @@ class Feed implements IteratorAggregate {
 	/**
 	 * @var string
 	 */
+	private $generator;
+
+	/**
+	 * @var string
+	 */
 	private $logo;
 
 	/**
@@ -172,6 +177,13 @@ class Feed implements IteratorAggregate {
 	/**
 	 * @return string
 	 */
+	public function getGenerator() {
+		return $this->generator;
+	}
+
+	/**
+	 * @return string
+	 */
 	public function getLanguage() {
 		return $this->language;
 	}
@@ -274,6 +286,13 @@ class Feed implements IteratorAggregate {
 	 */
 	public function setDateUpdated(DateTime $dateUpdated) {
 		$this->dateUpdated = $dateUpdated;
+	}
+
+	/**
+	 * @param string $generator
+	 */
+	public function setGenerator($generator) {
+		$this->generator = $generator;
 	}
 
 	/**
