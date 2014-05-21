@@ -94,7 +94,12 @@ class RSSXML implements Serializer {
 			$channelXML->addChild('lastBuildDate', $dateUpdated->format(self::DATE_FORMAT));
 		}
 
-		$channelXML->addChild('generator', $this->generator);
+		if (is_null($feed->getGenerator())) {
+			$channelXML->addChild('generator', $this->generator);
+		} else {
+			$channelXML->addChild('generator', $feed->getGenerator());
+		}
+
 
 		$logo = $feed->getLogo();
 		if (!is_null($logo)) {
