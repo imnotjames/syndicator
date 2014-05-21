@@ -46,14 +46,9 @@ class Article {
 	private $datePublished;
 
 	/**
-	 * @var string
+	 * @var Contact
 	 */
-	private $authorEmail;
-
-	/**
-	 * @var string
-	 */
-	private $authorName;
+	private $author;
 
 	/**
 	 * @var array
@@ -112,17 +107,10 @@ class Article {
 	}
 
 	/**
-	 * @return string
+	 * @return Contact
 	 */
-	public function getAuthorEmail() {
-		return $this->authorEmail;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getAuthorName() {
-		return $this->authorName;
+	public function getAuthor() {
+		return $this->author;
 	}
 
 	/**
@@ -182,24 +170,10 @@ class Article {
 	}
 
 	/**
-	 * @param string $copyright
+	 * @param Contact $author
 	 */
-	public function setCopyright($copyright) {
-		$this->copyright = $copyright;
-	}
-
-	/**
-	 * @param string $authorEmail
-	 */
-	public function setAuthorEmail($authorEmail) {
-		$this->authorEmail = $authorEmail;
-	}
-
-	/**
-	 * @param string $authorName
-	 */
-	public function setAuthorName($authorName) {
-		$this->authorName = $authorName;
+	public function setAuthor(Contact $author) {
+		$this->author = $author;
 	}
 
 	/**
@@ -210,9 +184,9 @@ class Article {
 	}
 
 	/**
-	 * @param string $category
+	 * @param Category $category
 	 */
-	public function addCategory($category) {
+	public function addCategory(Category $category) {
 		$this->categories[] = $category;
 	}
 
