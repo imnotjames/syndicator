@@ -202,6 +202,8 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 				false,
 				false
 			);
+
+		$this->assertEquals('Foo', $feed->getGenerator());
 	}
 }
 
