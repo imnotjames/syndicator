@@ -2,6 +2,7 @@
 namespace imnotjames\Syndicator\Parsers;
 
 use imnotjames\Syndicator\Article;
+use imnotjames\Syndicator\Category;
 use imnotjames\Syndicator\Contact;
 use imnotjames\Syndicator\Exceptions\ParsingException;
 use imnotjames\Syndicator\Feed;
@@ -793,6 +794,12 @@ class RSSXML implements Parser {
 			}
 		}
 
+		if (isset($xml->channel->category)) {
+			foreach ($xml->channel->category as $category) {
+				$feed->addCategory($this->parseCategory($category));
+			}
+		}
+
 		if (isset($xml->channel->cloud)) {
 			$feed->setSubscription($this->parseSubscription($xml->channel->cloud));
 		}
@@ -864,6 +871,21 @@ class RSSXML implements Parser {
 				$subscription['protocol'],
 				$subscription['registerProcedure']
 			);
+	}
+
+	/**
+	 * @param SimpleXMLElement $category
+	 *
+	 * @return Category
+	 */
+	private function parseCategory(SimpleXMLElement $category) {
+		$object = new Category((string) $category);
+
+		if (!empty($category['domain'])) {
+			$object->setTaxonomy((string) $category['domain']);
+		}
+
+		return $object;
 	}
 
 	/**
