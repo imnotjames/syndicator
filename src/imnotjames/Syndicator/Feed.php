@@ -338,9 +338,9 @@ class Feed implements IteratorAggregate {
 	}
 
 	/**
-	 * @param string $category
+	 * @param Category $category
 	 */
-	public function addCategory($category) {
+	public function addCategory(Category $category) {
 		$this->categories[] = $category;
 	}
 
