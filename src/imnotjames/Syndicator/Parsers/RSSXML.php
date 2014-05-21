@@ -800,6 +800,10 @@ class RSSXML implements Parser {
 			}
 		}
 
+		if (isset($xml->channel->generator)) {
+			$feed->setGenerator((string) $xml->channel->generator);
+		}
+
 		if (isset($xml->channel->cloud)) {
 			$feed->setSubscription($this->parseSubscription($xml->channel->cloud));
 		}
