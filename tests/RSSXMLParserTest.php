@@ -37,6 +37,18 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 		return $this->getDataSourceRSS('./tests/feeds/valid/');
 	}
 
+	private function assertContainsAll(array $expected, array $actual) {
+		foreach ($expected as $expect) {
+			$this->assertContains(
+					$expect,
+					$actual,
+					'',
+					false,
+					false
+				);
+		}
+	}
+
 	/**
 	 * @dataProvider getDataSourceInvalidRSS
 	 *
@@ -119,14 +131,11 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 			$descriptions[] = $article->getDescription();
 		}
 
-		$this->assertContains('Test article 1', $titles);
-		$this->assertContains('Test article 2', $titles);
+		$this->assertContainsAll([ 'Test article 1', 'Test article 2' ], $titles);
 
-		$this->assertContains('http://example.com/1', $uris);
-		$this->assertContains('http://example.com/2', $uris);
+		$this->assertContainsAll([ 'http://example.com/1', 'http://example.com/2' ], $uris);
 
-		$this->assertContains('This is a test article', $descriptions);
-		$this->assertContains('This is also a test article', $descriptions);
+		$this->assertContainsAll([ 'This is a test article', 'This is also a test article' ], $descriptions);
 	}
 
 	public function testParseAdvanced() {
@@ -187,20 +196,9 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 				$feed->getCategories()
 			);
 
-		$this->assertContains(
-				new Category('Bar'),
-				$feed->getCategories(),
-				'',
-				false,
-				false
-			);
-
-		$this->assertContains(
-				new Category('Foo', 'http://example.org/foo'),
-				$feed->getCategories(),
-				'',
-				false,
-				false
+		$this->assertContainsAll(
+				[ new Category('Bar'), new Category('Foo', 'http://example.org/foo') ],
+				$feed->getCategories()
 			);
 
 		$this->assertEquals('Foo', $feed->getGenerator());
