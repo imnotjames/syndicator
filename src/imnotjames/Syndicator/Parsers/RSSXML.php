@@ -4,6 +4,7 @@ namespace imnotjames\Syndicator\Parsers;
 use imnotjames\Syndicator\Article;
 use imnotjames\Syndicator\Category;
 use imnotjames\Syndicator\Contact;
+use imnotjames\Syndicator\Enclosure;
 use imnotjames\Syndicator\Exceptions\ParsingException;
 use imnotjames\Syndicator\Feed;
 use imnotjames\Syndicator\Logo;
@@ -835,15 +836,11 @@ class RSSXML implements Parser {
 		}
 
 		if (isset($xml->channel->pubDate)) {
-			$pubDate = DateTime::createFromFormat(DateTime::RSS, (string) $xml->channel->pubDate);
-
-			$feed->setDatePublished($pubDate);
+			$feed->setDatePublished($this->parseDateTime($xml->channel->pubDate));
 		}
 
 		if (isset($xml->channel->lastBuildDate)) {
-			$lastBuildDate = DateTime::createFromFormat(DateTime::RSS, (string) $xml->channel->lastBuildDate);
-
-			$feed->setDateUpdated($lastBuildDate);
+			$feed->setDateUpdated($this->parseDateTime($xml->channel->lastBuildDate));
 		}
 
 		if (isset($xml->channel->skipHours)) {
@@ -874,6 +871,18 @@ class RSSXML implements Parser {
 		} else {
 			return new Contact($contactParts[0], trim($contactParts[1], '()'));
 		}
+	}
+
+	/**
+	 * @param SimpleXMLElement $datetime
+	 *
+	 * @return DateTime
+	 */
+	private function parseDateTime(SimpleXMLElement $datetime) {
+		return DateTime::createFromFormat(
+				DateTime::RSS,
+				(string) $datetime
+			);
 	}
 
 	/**
@@ -930,6 +939,19 @@ class RSSXML implements Parser {
 	}
 
 	/**
+	 * @param SimpleXMLElement $enclosure
+	 *
+	 * @return Enclosure
+	 */
+	private function parseEnclosure(SimpleXMLElement $enclosure) {
+		return new Enclosure(
+				(string) $enclosure['url'],
+				(string) $enclosure['length'],
+				(string) $enclosure['type']
+			);
+	}
+
+	/**
 	 * @param SimpleXMLElement $item
 	 *
 	 * @return Article
@@ -941,6 +963,30 @@ class RSSXML implements Parser {
 		$article->setTitle((string) $item->title);
 		$article->setURI((string) $item->link);
 		$article->setDescription((string) $item->description);
+
+		if (isset($item->author)) {
+			$article->setAuthor($this->parseContact($item->author));
+		}
+
+		if (isset($item->pubDate)) {
+			$article->setDatePublished($this->parseDateTime($item->pubDate));
+		}
+
+		if (isset($item->category)) {
+			foreach ($item->category as $category) {
+				$article->addCategory($this->parseCategory($category));
+			}
+		}
+
+		if (isset($item->enclosure)) {
+			foreach ($item->enclosure as $enclosure) {
+				$article->addEnclosure($this->parseEnclosure($enclosure));
+			}
+		}
+
+		if (isset($item->guid)) {
+			$article->setID((string) $item->guid);
+		}
 
 		return $article;
 	}
