@@ -180,7 +180,7 @@ class RSSXML implements Serializer {
 				$permalinkXML->addAttribute('isPermaLink', 'false');
 			}
 
-			$itemEnclosure = $article->getEnclosure();
+			$itemEnclosure = $article->getEnclosures();
 			if (!empty($itemEnclosure)) {
 				$enclosureXML = $itemXML->addChild('enclosure');
 				$enclosureXML->addAttribute('url', $itemEnclosure->getURI());
