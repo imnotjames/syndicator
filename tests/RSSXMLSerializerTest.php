@@ -39,27 +39,25 @@ class RSSXMLSerializerTest extends PHPUnit_Framework_TestCase {
 
 		$rssXMLSerializer->setGenerator('Weblog Editor 2.0');
 
-		$rssXML = $rssXMLSerializer->serialize($feed);
+		$rssDOM = new DOMDocument(1.0);
 
-		$rssDOM = dom_import_simplexml(simplexml_load_string($rssXML))->ownerDocument;
+		$rssDOM->formatOutput = false;
 
-		$rssDOM->formatOutput = true;
+		$rssDOM->preserveWhiteSpace = false;
 
-		$rssXML = $rssDOM->saveXML();
+		$rssDOM->loadXML($rssXMLSerializer->serialize($feed));
 
-		// Remove whitespace before the tags
-		$rssXML = preg_replace('/^\s*/m', '', $rssXML);
+		$rssXML = $rssDOM->C14N(true, false);
 
-		$expectXML = simplexml_load_file('tests/feeds/example.xml');
+		$expectDOM = new DOMDocument(1.0);
 
-		$expectDOM = dom_import_simplexml($expectXML)->ownerDocument;
+		$expectDOM->formatOutput = false;
 
-		$expectDOM->formatOutput = true;
+		$expectDOM->preserveWhiteSpace = false;
 
-		$expectXML = $expectDOM->saveXML();
+		$expectDOM->load('tests/feeds/example.xml');
 
-		// Remove whitespace before the tags
-		$expectXML = preg_replace('/^\s*/m', '', $expectXML);
+		$expectXML = $expectDOM->C14N(true, false);
 
 		$this->assertEquals($expectXML, $rssXML);
 	}
