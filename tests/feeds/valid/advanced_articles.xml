@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<title>Test Case</title>
+		<link>https://github.com/imnotjames/syndicator</link>
+		<description>This is a test case</description>
+
+		<item>
+			<title>Test article 1</title>
+			<description>This is a test article</description>
+			<link>http://example.org/1</link>
+
+			<author>foo@example.org (User Foo)</author>
+
+			<category domain="http://example.org/foo">Foo</category>
+			<category>Bar</category>
+
+			<enclosure url="http://example.org/foo.ogg" length="12321" type="audio/vorbis" />
+			<enclosure url="http://example.org/foo.mp3" length="12321" type="audio/mpeg" />
+
+			<comments>http://example.com/1/comments</comments>
+
+			<guid>http://example.com/1</guid>
+
+			<pubDate>Fri, 2 May 2014 12:00:00 EDT</pubDate>
+
+			<source url="http://example.org/source.xml">Test Source</source>
+		</item>
+	</channel>
+</rss>

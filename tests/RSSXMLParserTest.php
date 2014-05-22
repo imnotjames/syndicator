@@ -2,6 +2,7 @@
 
 use imnotjames\Syndicator\Contact;
 use imnotjames\Syndicator\Category;
+use imnotjames\Syndicator\Enclosure;
 
 class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	/**
@@ -202,6 +203,48 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 			);
 
 		$this->assertEquals('Foo', $feed->getGenerator());
+	}
+
+	public function testParseAdvancedWithArticles() {
+		$xml = file_get_contents('./tests/feeds/valid/advanced_articles.xml');
+
+		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
+
+		$feed = $parser->parse($xml);
+
+		$articles = $feed->getArticles();
+
+		$this->assertCount(1, $articles);
+
+		$article = $articles[0];
+
+		$this->assertEquals(
+				new Contact('foo@example.org', 'User Foo'),
+				$article->getAuthor()
+			);
+
+		$this->assertEquals(
+				DateTime::createFromFormat(DateTime::RSS, 'Fri, 2 May 2014 12:00:00 EDT'),
+				$article->getDatePublished()
+			);
+
+		$this->assertContainsAll(
+				[
+					new Category('Foo', 'http://example.org/foo'),
+					new Category('Bar')
+				],
+				$article->getCategories()
+			);
+
+		$this->assertContainsAll(
+				[
+					new Enclosure('http://example.org/foo.mp3', 12321, 'audio/mpeg'),
+					new Enclosure('http://example.org/foo.ogg', 12321, 'audio/vorbis'),
+				],
+				$article->getEnclosures()
+			);
+
+		$this->assertEquals('http://example.com/1', $article->getID());
 	}
 }
 
