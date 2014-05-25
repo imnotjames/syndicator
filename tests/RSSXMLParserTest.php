@@ -2,7 +2,7 @@
 
 use imnotjames\Syndicator\Contact;
 use imnotjames\Syndicator\Category;
-use imnotjames\Syndicator\Attachment;
+use imnotjames\Syndicator\Link;
 
 class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	/**
@@ -238,8 +238,8 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertContainsAll(
 				array(
-					new Attachment('http://example.org/foo.mp3', 12321, 'audio/mpeg'),
-					new Attachment('http://example.org/foo.ogg', 12321, 'audio/vorbis'),
+					new Link('http://example.org/foo.mp3', Link::TYPE_ENCLOSURE, 'audio/mpeg', 12321),
+					new Link('http://example.org/foo.ogg', Link::TYPE_ENCLOSURE, 'audio/vorbis', 12321),
 				),
 				$article->getAttachments()
 			);

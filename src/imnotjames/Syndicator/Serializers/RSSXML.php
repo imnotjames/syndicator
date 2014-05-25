@@ -5,6 +5,7 @@ use imnotjames\Syndicator\Article;
 use imnotjames\Syndicator\Category;
 use imnotjames\Syndicator\Exceptions\SerializationException;
 use imnotjames\Syndicator\Feed;
+use imnotjames\Syndicator\Link;
 use imnotjames\Syndicator\Serializer;
 use SimpleXMLElement;
 use DateTime;
@@ -209,11 +210,26 @@ class RSSXML implements Serializer {
 		}
 
 		$attachments = $article->getAttachments();
-		foreach ($attachments as $attachment) {
-			$attachmentXML = $itemXML->addChild('enclosure');
-			$attachmentXML->addAttribute('url', $attachment->getURI());
-			$attachmentXML->addAttribute('length', $attachment->getLength());
-			$attachmentXML->addAttribute('type', $attachment->getType());
+
+		$enclosures = array_filter(
+			$attachments,
+			function ($a) {
+				return  $a instanceof Link && $a->getLinkType() === Link::TYPE_ENCLOSURE;
+			}
+		);
+
+		$comments = array_filter(
+			$attachments,
+			function ($a) {
+				return  $a instanceof Link && $a->getLinkType() === Link::TYPE_COMMENT;
+			}
+		);
+
+		foreach ($enclosures as $enclosure) {
+			$enclosureXML = $itemXML->addChild('enclosure');
+			$enclosureXML->addAttribute('url', $enclosure->getURI());
+			$enclosureXML->addAttribute('length', $enclosure->getLength());
+			$enclosureXML->addAttribute('type', $enclosure->getMediaType());
 		}
 
 		$author = $article->getAuthor();
@@ -226,6 +242,10 @@ class RSSXML implements Serializer {
 			} else {
 				$itemXML->addChild('author', $email);
 			}
+		}
+
+		foreach ($comments as $comment) {
+			$itemXML->addChild('comments', $comment->getURI());
 		}
 
 		$source = $article->getSource();

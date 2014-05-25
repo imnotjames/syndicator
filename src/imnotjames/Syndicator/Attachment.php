@@ -1,21 +1,12 @@
 <?php
 namespace imnotjames\Syndicator;
 
-use imnotjames\Syndicator\Exceptions\InvalidURIException;
-
 /**
  * A link to a file, in an article
  *
  * @package imnotjames\Syndicator
  */
-class Attachment {
-	/**
-	 * URI of enclosed file
-	 *
-	 * @var string
-	 */
-	private $uri;
-
+abstract class Attachment {
 	/**
 	 * Byte length of enclosed file
 	 *
@@ -33,31 +24,14 @@ class Attachment {
 	/**
 	 * Construct an enclosure
 	 *
-	 * @param string $uri
-	 * @param int    $length
-	 * @param string $type
+	 * @param null|string $mediaType
+	 * @param int         $length
 	 *
-	 * @throws Exceptions\InvalidURIException
+	 * @internal param string $type
 	 */
-	public function __construct($uri, $length, $type) {
-		$uri = filter_var($uri, FILTER_VALIDATE_URL);
-
-		if ($uri === false) {
-			throw new InvalidURIException();
-		}
-
-		$this->uri = $uri;
+	public function __construct($mediaType = null, $length = 0) {
 		$this->length = (int) $length;
-		$this->type = $type;
-	}
-
-	/**
-	 * Get enclosed file's URI
-	 *
-	 * @return string
-	 */
-	public function getURI() {
-		return $this->uri;
+		$this->type = $mediaType;
 	}
 
 	/**
@@ -74,7 +48,7 @@ class Attachment {
 	 *
 	 * @return string
 	 */
-	public function getType() {
+	public function getMediaType() {
 		return $this->type;
 	}
 }
