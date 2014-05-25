@@ -181,12 +181,12 @@ class RSSXML implements Serializer {
 				$permalinkXML->addAttribute('isPermaLink', 'false');
 			}
 
-			$itemEnclosure = $article->getEnclosures();
-			if (!empty($itemEnclosure)) {
-				$enclosureXML = $itemXML->addChild('enclosure');
-				$enclosureXML->addAttribute('url', $itemEnclosure->getURI());
-				$enclosureXML->addAttribute('length', $itemEnclosure->getLength());
-				$enclosureXML->addAttribute('type', $itemEnclosure->getType());
+			$attachments = $article->getAttachments();
+			foreach ($attachments as $attachment) {
+				$attachmentXML = $itemXML->addChild('enclosure');
+				$attachmentXML->addAttribute('url', $attachment->getURI());
+				$attachmentXML->addAttribute('length', $attachment->getLength());
+				$attachmentXML->addAttribute('type', $attachment->getType());
 			}
 		}
 

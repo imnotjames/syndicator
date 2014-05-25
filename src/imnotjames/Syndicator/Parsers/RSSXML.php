@@ -4,7 +4,7 @@ namespace imnotjames\Syndicator\Parsers;
 use imnotjames\Syndicator\Article;
 use imnotjames\Syndicator\Category;
 use imnotjames\Syndicator\Contact;
-use imnotjames\Syndicator\Enclosure;
+use imnotjames\Syndicator\Attachment;
 use imnotjames\Syndicator\Exceptions\ParsingException;
 use imnotjames\Syndicator\Feed;
 use imnotjames\Syndicator\Logo;
@@ -939,15 +939,15 @@ class RSSXML implements Parser {
 	}
 
 	/**
-	 * @param SimpleXMLElement $enclosure
+	 * @param SimpleXMLElement $attachment
 	 *
-	 * @return Enclosure
+	 * @return Attachment
 	 */
-	private function parseEnclosure(SimpleXMLElement $enclosure) {
-		return new Enclosure(
-				(string) $enclosure['url'],
-				(string) $enclosure['length'],
-				(string) $enclosure['type']
+	private function parseAttachment(SimpleXMLElement $attachment) {
+		return new Attachment(
+				(string) $attachment['url'],
+				(string) $attachment['length'],
+				(string) $attachment['type']
 			);
 	}
 
@@ -980,7 +980,7 @@ class RSSXML implements Parser {
 
 		if (isset($item->enclosure)) {
 			foreach ($item->enclosure as $enclosure) {
-				$article->addEnclosure($this->parseEnclosure($enclosure));
+				$article->addAttachment($this->parseAttachment($enclosure));
 			}
 		}
 

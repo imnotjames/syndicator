@@ -38,7 +38,7 @@ class Article {
 	/**
 	 * @var array
 	 */
-	private $enclosures = array();
+	private $attachments = array();
 
 	/**
 	 * @var \DateTime
@@ -116,8 +116,8 @@ class Article {
 	/**
 	 * @return array
 	 */
-	public function getEnclosures() {
-		return $this->enclosures;
+	public function getAttachments() {
+		return $this->attachments;
 	}
 
 	/**
@@ -177,10 +177,10 @@ class Article {
 	}
 
 	/**
-	 * @param Enclosure $enclosure
+	 * @param Attachment $attachment
 	 */
-	public function addEnclosure(Enclosure $enclosure) {
-		$this->enclosures[] = $enclosure;
+	public function addAttachment(Attachment $attachment) {
+		$this->attachments[] = $attachment;
 	}
 
 	/**

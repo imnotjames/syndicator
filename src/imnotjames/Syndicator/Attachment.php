@@ -8,7 +8,7 @@ use imnotjames\Syndicator\Exceptions\InvalidURIException;
  *
  * @package imnotjames\Syndicator
  */
-class Enclosure {
+class Attachment {
 	/**
 	 * URI of enclosed file
 	 *
@@ -52,7 +52,7 @@ class Enclosure {
 	}
 
 	/**
-	 * Get enclosure file's URI
+	 * Get enclosed file's URI
 	 *
 	 * @return string
 	 */
@@ -61,7 +61,7 @@ class Enclosure {
 	}
 
 	/**
-	 * Get the enclosure file's length in bytes
+	 * Get the enclosed file's length in bytes
 	 *
 	 * @return int
 	 */
@@ -70,7 +70,7 @@ class Enclosure {
 	}
 
 	/**
-	 * Get the enclosure file's content type
+	 * Get the enclosed file's content type
 	 *
 	 * @return string
 	 */
