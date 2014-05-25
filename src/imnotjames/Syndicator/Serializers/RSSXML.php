@@ -5,6 +5,7 @@ use imnotjames\Syndicator\Exceptions\SerializationException;
 use imnotjames\Syndicator\Feed;
 use imnotjames\Syndicator\Serializer;
 use SimpleXMLElement;
+use DateTime;
 
 /**
  * An RSS 2.0 XML Serializer
@@ -12,7 +13,7 @@ use SimpleXMLElement;
  * @package imnotjames\Syndicator\Serializers
  */
 class RSSXML implements Serializer {
-	const DATE_FORMAT = 'D, d M Y H:i:s e';
+	const DATE_FORMAT = DateTime::RSS;
 
 	/**
 	 * @var string
