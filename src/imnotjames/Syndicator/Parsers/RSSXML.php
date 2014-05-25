@@ -916,6 +916,21 @@ class RSSXML implements Parser {
 	}
 
 	/**
+	 * @param SimpleXMLElement $source
+	 *
+	 * @return Article
+	 * @throws \imnotjames\Syndicator\Exceptions\InvalidURIException
+	 */
+	private function parseSource(SimpleXMLElement $source) {
+		$article = new Article();
+
+		$article->setTitle((string) $source);
+		$article->setURI((string) $source['url']);
+
+		return $article;
+	}
+
+	/**
 	 * @param SimpleXMLElement $logo
 	 *
 	 * @return Logo
@@ -986,6 +1001,10 @@ class RSSXML implements Parser {
 
 		if (isset($item->guid)) {
 			$article->setID((string) $item->guid);
+		}
+
+		if (isset($item->source)) {
+			$article->setSource($this->parseSource($item->source));
 		}
 
 		return $article;

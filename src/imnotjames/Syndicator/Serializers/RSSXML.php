@@ -227,6 +227,12 @@ class RSSXML implements Serializer {
 				$itemXML->addChild('author', $email);
 			}
 		}
+
+		$source = $article->getSource();
+		if (!is_null($source)) {
+			$sourceXML = $itemXML->addChild('source', $source->getTitle());
+			$sourceXML->addAttribute('url', $source->getURI());
+		}
 	}
 
 	/**

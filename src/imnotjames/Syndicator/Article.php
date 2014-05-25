@@ -56,6 +56,11 @@ class Article {
 	private $categories = array();
 
 	/**
+	 * @var Article
+	 */
+	private $source;
+
+	/**
 	 * @param string $id
 	 *
 	 * @throws Exceptions\InvalidURIException
@@ -111,6 +116,13 @@ class Article {
 	 */
 	public function getAuthor() {
 		return $this->author;
+	}
+
+	/**
+	 * @return Article
+	 */
+	public function getSource() {
+		return $this->source;
 	}
 
 	/**
@@ -174,6 +186,13 @@ class Article {
 	 */
 	public function setAuthor(Contact $author) {
 		$this->author = $author;
+	}
+
+	/**
+	 * @param Article $source
+	 */
+	public function setSource(Article $source) {
+		$this->source = $source;
 	}
 
 	/**

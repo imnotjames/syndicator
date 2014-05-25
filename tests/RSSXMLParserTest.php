@@ -244,6 +244,10 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 				$article->getAttachments()
 			);
 
+		$this->assertNotNull($article->getSource());
+		$this->assertEquals($article->getSource()->getURI(), 'http://example.org/source.xml');
+		$this->assertEquals($article->getSource()->getTitle(), 'Test Source');
+
 		$this->assertEquals('http://example.com/1', $article->getID());
 	}
 }
