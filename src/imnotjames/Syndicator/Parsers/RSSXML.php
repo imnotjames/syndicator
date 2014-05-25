@@ -350,7 +350,7 @@ class RSSXML implements Parser {
 
 		if (!isset($cloud['protocol'])) {
 			throw new ParsingException('invalid cloud element: missing protocol attribute');
-		} else  if (!in_array((string) $cloud['protocol'], ['http-post', 'xml-rpc', 'soap'], true)) {
+		} else  if (!in_array((string) $cloud['protocol'], array('http-post', 'xml-rpc', 'soap'), true)) {
 			throw new ParsingException('invalid cloud element: invalid protocol attribute: must be one of http-post, xml-rpc, or soap');
 		}
 
