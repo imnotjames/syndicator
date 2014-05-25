@@ -65,4 +65,57 @@ class RSSXMLSerializerTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertXMLEquals('tests/feeds/rss2/example.xml', $rssXMLSerializer->serialize($feed));
 	}
+
+	public function testSerializeAdvancedWithArticles() {
+		$feed = new \imnotjames\Syndicator\Feed(
+			'Test Case',
+			'This is a test case',
+			'https://github.com/imnotjames/syndicator'
+		);
+
+		$article = new \imnotjames\Syndicator\Article('http://example.com/1');
+
+		$article->setTitle('Test article 1');
+		$article->setDescription('This is a test article');
+		$article->setURI('http://example.org/1');
+
+		$article->setAuthor(new \imnotjames\Syndicator\Contact('foo@example.org', 'User Foo'));
+
+		$article->addCategory(new \imnotjames\Syndicator\Category('Foo', 'http://example.org/foo'));
+		$article->addCategory(new \imnotjames\Syndicator\Category('Bar'));
+
+		$article->setDatePublished(new DateTime('Fri, 2 May 2014 12:00:00 EDT'));
+
+		$article->addAttachment(new \imnotjames\Syndicator\Link(
+			'http://example.org/foo.ogg',
+			\imnotjames\Syndicator\Link::TYPE_ENCLOSURE,
+			'audio/vorbis',
+			12321
+		));
+
+		$article->addAttachment(new \imnotjames\Syndicator\Link(
+			'http://example.org/foo.mp3',
+			\imnotjames\Syndicator\Link::TYPE_ENCLOSURE,
+			'audio/mpeg',
+			12321
+		));
+
+		$article->addAttachment(new \imnotjames\Syndicator\Link(
+			'http://example.org/1/comments',
+			\imnotjames\Syndicator\Link::TYPE_COMMENT
+		));
+
+		$sourceArticle = new \imnotjames\Syndicator\Article();
+
+		$sourceArticle->setTitle('Test Source');
+		$sourceArticle->setURI('http://example.org/source.xml');
+
+		$article->setSource($sourceArticle);
+
+		$feed->addArticle($article);
+
+		$rssXMLSerializer = new \imnotjames\Syndicator\Serializers\RSSXML();
+
+		$this->assertXMLEquals('tests/feeds/rss2/valid/advanced_articles.xml', $rssXMLSerializer->serialize($feed));
+	}
 }

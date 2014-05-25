@@ -5,24 +5,26 @@
 		<link>https://github.com/imnotjames/syndicator</link>
 		<description>This is a test case</description>
 
+		<generator>Syndicator RSS Serializer (https://github.com/imnotjames/syndicator)</generator>
+
 		<item>
 			<title>Test article 1</title>
-			<description>This is a test article</description>
 			<link>http://example.org/1</link>
-
-			<author>foo@example.org (User Foo)</author>
+			<description>This is a test article</description>
 
 			<category domain="http://example.org/foo">Foo</category>
 			<category>Bar</category>
 
-			<enclosure url="http://example.org/foo.ogg" length="12321" type="audio/vorbis" />
-			<enclosure url="http://example.org/foo.mp3" length="12321" type="audio/mpeg" />
-
-			<comments>http://example.com/1/comments</comments>
+			<pubDate>Fri, 02 May 2014 12:00:00 -0400</pubDate>
 
 			<guid>http://example.com/1</guid>
 
-			<pubDate>Fri, 2 May 2014 12:00:00 EDT</pubDate>
+			<enclosure url="http://example.org/foo.ogg" length="12321" type="audio/vorbis" />
+			<enclosure url="http://example.org/foo.mp3" length="12321" type="audio/mpeg" />
+
+			<author>foo@example.org (User Foo)</author>
+
+			<comments>http://example.org/1/comments</comments>
 
 			<source url="http://example.org/source.xml">Test Source</source>
 		</item>
