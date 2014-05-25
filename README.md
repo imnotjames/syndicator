@@ -1,6 +1,9 @@
 ## Syndicator
 
 ### Basic library to parse and compose syndication feeds.
+
+[![Build Status](https://travis-ci.org/imnotjames/syndicator.svg?branch=master)](https://travis-ci.org/imnotjames/syndicator)
+
 Currently Supported Standards:
 
 * RSS XML 2.0
