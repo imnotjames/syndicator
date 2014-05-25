@@ -1,6 +1,30 @@
 <?php
 
 class RSSXMLSerializerTest extends PHPUnit_Framework_TestCase {
+	private function assertXMLEquals($expectXMLFile, $actualXML) {
+		$expectDOM = new DOMDocument(1.0);
+
+		$expectDOM->formatOutput = false;
+
+		$expectDOM->preserveWhiteSpace = false;
+
+		$expectDOM->load($expectXMLFile);
+
+		$expectXML = $expectDOM->C14N(true, false);
+
+		$rssDOM = new DOMDocument(1.0);
+
+		$rssDOM->formatOutput = false;
+
+		$rssDOM->preserveWhiteSpace = false;
+
+		$rssDOM->loadXML($actualXML);
+
+		$rssXML = $rssDOM->C14N(true, false);
+
+		$this->assertEquals($expectXML, $rssXML);
+	}
+
 	public function testSerialize() {
 		$feed = new \imnotjames\Syndicator\Feed('Liftoff News', 'Liftoff to Space Exploration.', 'http://liftoff.msfc.nasa.gov/');
 
@@ -39,26 +63,6 @@ class RSSXMLSerializerTest extends PHPUnit_Framework_TestCase {
 
 		$rssXMLSerializer->setGenerator('Weblog Editor 2.0');
 
-		$rssDOM = new DOMDocument(1.0);
-
-		$rssDOM->formatOutput = false;
-
-		$rssDOM->preserveWhiteSpace = false;
-
-		$rssDOM->loadXML($rssXMLSerializer->serialize($feed));
-
-		$rssXML = $rssDOM->C14N(true, false);
-
-		$expectDOM = new DOMDocument(1.0);
-
-		$expectDOM->formatOutput = false;
-
-		$expectDOM->preserveWhiteSpace = false;
-
-		$expectDOM->load('tests/feeds/rss2/example.xml');
-
-		$expectXML = $expectDOM->C14N(true, false);
-
-		$this->assertEquals($expectXML, $rssXML);
+		$this->assertXMLEquals('tests/feeds/rss2/example.xml', $rssXMLSerializer->serialize($feed));
 	}
 }
