@@ -165,7 +165,10 @@ class RSSXML implements Serializer {
 
 			$categories = $article->getCategories();
 			foreach ($categories as $category) {
-				$itemXML->addChild('category', $category);
+				$categoryXML = $itemXML->addChild('category', $category->getName());
+				if (!is_null($category->getTaxonomy())) {
+					$categoryXML['domain'] = $category->getTaxonomy();
+				}
 			}
 
 			$publishedDate = $article->getDatePublished();
