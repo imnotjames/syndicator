@@ -28,14 +28,14 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	 * @return \Iterator
 	 */
 	public function getDataSourceInvalidRSS() {
-		return $this->getDataSourceRSS('./tests/feeds/invalid/');
+		return $this->getDataSourceRSS('./tests/feeds/rss2/invalid/');
 	}
 
 	/**
 	 * @return \Iterator
 	 */
 	public function getDataSourceValidRSS() {
-		return $this->getDataSourceRSS('./tests/feeds/valid/');
+		return $this->getDataSourceRSS('./tests/feeds/rss2/valid/');
 	}
 
 	private function assertContainsAll(array $expected, array $actual) {
@@ -94,7 +94,7 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testParseBasic() {
-		$xml = file_get_contents('./tests/feeds/valid/basic.xml');
+		$xml = file_get_contents('./tests/feeds/rss2/valid/basic.xml');
 
 		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
 
@@ -108,7 +108,7 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testParseBasicWithArticles() {
-		$xml = file_get_contents('./tests/feeds/valid/basic_articles.xml');
+		$xml = file_get_contents('./tests/feeds/rss2/valid/basic_articles.xml');
 
 		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
 
@@ -140,7 +140,7 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testParseAdvanced() {
-		$xml = file_get_contents('./tests/feeds/valid/advanced.xml');
+		$xml = file_get_contents('./tests/feeds/rss2/valid/advanced.xml');
 
 		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
 
@@ -206,7 +206,7 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testParseAdvancedWithArticles() {
-		$xml = file_get_contents('./tests/feeds/valid/advanced_articles.xml');
+		$xml = file_get_contents('./tests/feeds/rss2/valid/advanced_articles.xml');
 
 		$parser = new \imnotjames\Syndicator\Parsers\RSSXML();
 

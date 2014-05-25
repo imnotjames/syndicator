@@ -55,7 +55,7 @@ class RSSXMLSerializerTest extends PHPUnit_Framework_TestCase {
 
 		$expectDOM->preserveWhiteSpace = false;
 
-		$expectDOM->load('tests/feeds/example.xml');
+		$expectDOM->load('tests/feeds/rss2/example.xml');
 
 		$expectXML = $expectDOM->C14N(true, false);
 
