@@ -191,6 +191,18 @@ class RSSXML implements Serializer {
 				$attachmentXML->addAttribute('length', $attachment->getLength());
 				$attachmentXML->addAttribute('type', $attachment->getType());
 			}
+
+			$author = $article->getAuthor();
+			if (!is_null($author)) {
+				$email = $author->getEmail();
+				$name = $author->getName();
+
+				if (!empty($name)) {
+					$itemXML->addChild('author', sprintf('%s (%s)', $email, $name));
+				} else {
+					$itemXML->addChild('author', $email);
+				}
+			}
 		}
 
 		return $feedXML->asXML();
