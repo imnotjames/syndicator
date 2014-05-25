@@ -132,11 +132,11 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 			$descriptions[] = $article->getDescription();
 		}
 
-		$this->assertContainsAll([ 'Test article 1', 'Test article 2' ], $titles);
+		$this->assertContainsAll(array( 'Test article 1', 'Test article 2' ), $titles);
 
-		$this->assertContainsAll([ 'http://example.com/1', 'http://example.com/2' ], $uris);
+		$this->assertContainsAll(array( 'http://example.com/1', 'http://example.com/2' ), $uris);
 
-		$this->assertContainsAll([ 'This is a test article', 'This is also a test article' ], $descriptions);
+		$this->assertContainsAll(array( 'This is a test article', 'This is also a test article' ), $descriptions);
 	}
 
 	public function testParseAdvanced() {
@@ -198,7 +198,7 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 			);
 
 		$this->assertContainsAll(
-				[ new Category('Bar'), new Category('Foo', 'http://example.org/foo') ],
+				array( new Category('Bar'), new Category('Foo', 'http://example.org/foo') ),
 				$feed->getCategories()
 			);
 
@@ -229,18 +229,18 @@ class RSSXMLParserTest extends PHPUnit_Framework_TestCase {
 			);
 
 		$this->assertContainsAll(
-				[
+				array(
 					new Category('Foo', 'http://example.org/foo'),
 					new Category('Bar')
-				],
+				),
 				$article->getCategories()
 			);
 
 		$this->assertContainsAll(
-				[
+				array(
 					new Enclosure('http://example.org/foo.mp3', 12321, 'audio/mpeg'),
 					new Enclosure('http://example.org/foo.ogg', 12321, 'audio/vorbis'),
-				],
+				),
 				$article->getEnclosures()
 			);
 
