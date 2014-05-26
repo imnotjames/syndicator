@@ -3,6 +3,7 @@
 ### Basic library to parse and compose syndication feeds.
 
 [![Build Status](https://travis-ci.org/imnotjames/syndicator.svg?branch=master)](https://travis-ci.org/imnotjames/syndicator)
+[![Coverage Status](https://img.shields.io/coveralls/imnotjames/syndicator.svg)](https://coveralls.io/r/imnotjames/syndicator)
 
 Currently Supported Standards:
 
